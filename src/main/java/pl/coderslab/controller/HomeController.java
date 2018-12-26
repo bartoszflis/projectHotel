@@ -45,7 +45,6 @@ public class HomeController {
 
     @GetMapping("")
     public String index(Model model, HttpSession session) {
-
         User user = (User) session.getAttribute("userSession");
        // List<Reservation> reservationFrom = reservationRepository.findByDatesFrom(actualDate);
       //  List<Reservation> reservationTo = reservationRepository.findByDatesTo(actualDate);
@@ -54,7 +53,7 @@ public class HomeController {
 
         if (userRepository.findAll().size()<1) {
 
-            return "redirect:user/register";
+            return "redirect:user/registerFirst";
 
         }
         if (user != null) {

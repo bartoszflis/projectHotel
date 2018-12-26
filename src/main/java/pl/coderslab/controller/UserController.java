@@ -65,8 +65,33 @@ public class UserController {
             return "user/register";
         }
         userRepository.save(user);
-        return "redirect:manage";
+        return "user/manage_users";
     }
+
+
+    @RequestMapping(value = "/registerFirst", method = RequestMethod.GET)
+    public String registerFirst(Model model){
+        if (userRepository.findAll().size() >= 1) {
+        return "redirect:/";
+
+        }
+        model.addAttribute("user", new User());
+        return "user/registerFirst";
+    }
+
+
+
+
+    @PostMapping("/registerFirst")
+    public String registerFirstPOST(@Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "user/registerFirst";
+        }
+        userRepository.save(user);
+        return "redirect:/";
+    }
+
+
 
 
 

@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-@WebFilter(urlPatterns = "/ddd")
+@WebFilter(urlPatterns = "/*")
 public class Filtr extends OncePerRequestFilter {
 
 
@@ -20,20 +20,19 @@ public class Filtr extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
 
         if (isAllowedOnlyForLoggedIn(httpServletRequest.getRequestURI(), httpServletRequest.getContextPath())
-                && httpServletRequest.getSession().getAttribute("email") == null) { // test if user not logged in
+                && httpServletRequest.getSession().getAttribute("userSession") == null) { // test if user not logged in
 
 
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/");
             return;
         }
         // handle being loggedin
-        System.out.println("allow");
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 
     private boolean isAllowedOnlyForLoggedIn(String url, String contextPath) {
         Set<String> allowedWithoutBeingLoggedIn = new HashSet<>(Arrays.asList(
-                contextPath + "/", contextPath + "/user/register"));
+                contextPath + "/", contextPath + "/user/registerFirst"));
 
         return !allowedWithoutBeingLoggedIn.contains(url);
     }
