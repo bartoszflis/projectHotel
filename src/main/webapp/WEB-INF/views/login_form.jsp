@@ -16,11 +16,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
-<body>
 <body style="background-color:#FFFAF0" class="container">
 
 
-    <form:form modelAttribute="user" method="POST" class="form-horizontal">
+    <form:form modelAttribute="user" method="POST" class="form-horizontal" >
 <br>
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Email:</label>
@@ -34,13 +33,13 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="password">Password:</label>
             <div class="col-sm-4">
-                <form:password path="password" class="form-control" name="pasword"/><br />
+                <form:password path="password" class="form-control" name="password"/><br />
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" value="Submit" class="btn btn-success"></input>
-                <div style="color:red">${param.loginError}</div>
+                <input type="submit" value="Sign in" class="btn btn-success"/>
+                <div style="color:red">${loginError}</div>
             </div>
         </div>
     </form:form>

@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/ddd")
 public class Filtr extends OncePerRequestFilter {
 
 

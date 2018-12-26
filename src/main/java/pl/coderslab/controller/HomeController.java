@@ -60,13 +60,12 @@ public class HomeController {
         if (email != null) {
             User user = userRepository.findFirstByEmail(email);
             model.addAttribute("user", user);
-            model.addAttribute("name", user.getFirstName() + " " + user.getLastName());
 
 
 
 
 
-       return  "redirect:home";}
+       return  "home";}
         else {
             model.addAttribute("user", new User());
             return "homepage";
@@ -90,6 +89,7 @@ public class HomeController {
 
         } else {
             model.addAttribute("loginError", "Invalid email or password");
+            return "homepage";
 
         }
 return "redirect:/";

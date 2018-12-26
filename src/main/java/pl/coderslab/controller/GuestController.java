@@ -71,7 +71,7 @@ public class GuestController {
         return "redirect:/";
     }
 
-    @RequestMapping(path = "/logout")
+    @RequestMapping(path = "../logout")
     public String logout(HttpSession session) {
         session.removeAttribute("email");
         return "redirect:/";

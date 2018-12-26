@@ -41,7 +41,7 @@
             <a class="nav-link active" href="../user/manage">Users</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/logout">Logout</a>
+            <a class="nav-link" href="..../logout">Logout</a>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
