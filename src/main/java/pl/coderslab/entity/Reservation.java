@@ -19,10 +19,12 @@ public class Reservation {
     private Long id;
  //  cascadetypemerge
     @ManyToOne(cascade = CascadeType.REMOVE)
+
     private Guest guest;
     @ManyToOne
+
     private Room room;
-    @NotNull
+
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 

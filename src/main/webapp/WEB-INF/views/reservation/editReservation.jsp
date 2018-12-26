@@ -45,6 +45,10 @@
 
 
 <form:form modelAttribute="reservation" method="POST" class="form-horizontal">
+    <form:hidden path="id"/>
+    <form:hidden path="guest.id"/>
+    <form:hidden path="room.id"/>
+
     <div class="form-group">
         <div class="col-sm-4">
             Start date: <form:input type="date" path="dateFrom" class="form-control col-lg-5"/><br/>

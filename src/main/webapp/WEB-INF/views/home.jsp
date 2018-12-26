@@ -46,6 +46,74 @@
 
 
 
+<h5 class="text-center" style="color: navy"> Reservations starting today</h5>
+<div class="container">
+    <table class="table table-striped">
+        <thead class="thead">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <c:forEach items="${reservationsFrom}" var="reservations">
+            <tr>
+                <td>${reservations.guest.firstName}</td>
+                <td>${reservations.guest.lastName}</td>
+                <td>${reservations.dateFrom}</td>
+                <td>${reservations.dateTo}</td>
+
+                <td>
+
+                    <a href="edit?id=${reservations.id}" class="btn-secondary btn-sm" role="button">Edit reservation</a>
+                    <a href="confirmDelete?id=${reservations.id}" class="btn-secondary btn-sm" role="button">Delete reservation</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+
+</div>
+
+<h5 class="text-center" style="color: navy"> Reservations ending today</h5>
+<div class="container">
+    <table class="table table-striped">
+        <thead class="thead">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <c:forEach items="${reservationsTo}" var="reservations">
+            <tr>
+                <td>${reservations.guest.firstName}</td>
+                <td>${reservations.guest.lastName}</td>
+                <td>${reservations.dateFrom}</td>
+                <td>${reservations.dateTo}</td>
+
+                <td>
+
+                    <a href="edit?id=${reservations.id}" class="btn-secondary btn-sm" role="button">Edit reservation</a>
+                    <a href="confirmDelete?id=${reservations.id}" class="btn-secondary btn-sm" role="button">Delete reservation</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+
+</div>
+
 
 
 

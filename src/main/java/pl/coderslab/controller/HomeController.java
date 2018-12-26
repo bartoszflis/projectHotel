@@ -102,6 +102,18 @@ return "redirect:/";
 
     }
 
+
+    @ModelAttribute("reservationsFrom")
+    public List<Reservation> getReservationFrom(){
+
+        return reservationRepository.findByDatesFrom(new Date());
+    }
+
+    @ModelAttribute("reservationsTo")
+    public List<Reservation> getReservationTo(){
+
+        return reservationRepository.findByDatesTo(new Date());
+    }
 }
 
 
