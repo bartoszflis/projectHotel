@@ -42,7 +42,7 @@
 
 
 
-<h4 class="text-center" style="color: dodgerblue" >Welcome ${user.firstName} + ${user.lastName}!</h4>
+<h4 class="text-center" style="color: dodgerblue" >Welcome ${userSession.fullName}!</h4>
 
 
 

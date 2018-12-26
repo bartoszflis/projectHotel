@@ -43,26 +43,21 @@ public class HomeController {
     UserRepository userRepository;
 
 
-    @RequestMapping("")
+    @GetMapping("")
     public String index(Model model, HttpSession session) {
 
-        String email = (String) session.getAttribute("email");
+        User user = (User) session.getAttribute("userSession");
        // List<Reservation> reservationFrom = reservationRepository.findByDatesFrom(actualDate);
       //  List<Reservation> reservationTo = reservationRepository.findByDatesTo(actualDate);
       //  model.addAttribute("dateFrom", reservationFrom);
      //   model.addAttribute("dateTo", reservationTo);
 
-//        if (userRepository.findAll().size()<1) {
-//
-//            return "redirect:user/register";
-//
-//        }
-        if (email != null) {
-            User user = userRepository.findFirstByEmail(email);
-            model.addAttribute("user", user);
+        if (userRepository.findAll().size()<1) {
 
+            return "redirect:user/register";
 
-
+        }
+        if (user != null) {
 
 
        return  "home";}
@@ -76,15 +71,12 @@ public class HomeController {
 
 
 
-
-
-
     @PostMapping("")
     public String login(@ModelAttribute("user") User user, Model model, HttpSession session) {
         User existingUser = userRepository.findFirstByEmail(user.getEmail());
         if (existingUser != null && existingUser.getEmail().equals(user.getEmail())
                 && existingUser.getPassword().equals(user.getPassword())) {
-            session.setAttribute("email", existingUser.getEmail());
+            session.setAttribute("userSession", existingUser);
 
 
         } else {
@@ -98,7 +90,7 @@ return "redirect:/";
 
     @RequestMapping(path = "/logout")
     public String logout(HttpSession session) {
-        session.removeAttribute("email");
+        session.removeAttribute("userSession");
         return "redirect:/";
     }
 
