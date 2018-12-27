@@ -75,7 +75,7 @@
                 <td>${rooms.roomPrice}</td>
                 <td>
 
-                    <a href="add?id=${rooms.id}" class="btn-secondary btn-sm" role="button">Edytuj pokój</a>
+                    <a href="changePrice?id=${rooms.id}" class="btn-secondary btn-sm" role="button">Change room's price</a>
                     <a href="confirmDelete?id=${rooms.id}&number=${rooms.number}" class="btn-secondary btn-sm"
                        role="button">Usuń pokój</a>
                 </td>

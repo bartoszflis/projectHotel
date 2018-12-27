@@ -2,6 +2,7 @@ package pl.coderslab.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import pl.coderslab.entity.Occupants;
 import pl.coderslab.entity.Room;
 import pl.coderslab.entity.RoomType;
@@ -16,31 +17,25 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 
 
 
-    @Query("SELECT DISTINCT r FROM Room r LEFT JOIN r.reservations re WHERE r.type = ?1 AND r.occupants = ?2" +
+    @Query("SELECT DISTINCT r FROM Room r LEFT JOIN r.reservations re WHERE r.type = :roomType AND r.occupants =:occupants" +
             " AND (re.id IS NULL OR (" +
             " (" +
             " SELECT COUNT(r) FROM Room r LEFT JOIN r.reservations re " +
-            " WHERE (?3 <= re.dateTo AND ?4 >= re.dateFrom)" +
+            " WHERE (:dateFrom <= re.dateTo AND :dateTo >= re.dateFrom)" +
             " ) = 0" +
             " ))"
     )
-    List<Room> getAvailableRooms(RoomType type, Occupants occupants
-            , Date dateFrom, Date dateTo
-
-    );
+    List<Room> getAvailableRooms(@Param("roomType") RoomType roomtype,@Param("occupants") Occupants occupants,@Param("dateFrom") Date dateFrom,@Param("dateTo") Date dateTo);
 
 
     @Query("SELECT DISTINCT r FROM Room r LEFT JOIN r.reservations re WHERE  (re.id IS NULL OR (" +
             " (" +
             " SELECT COUNT(r) FROM Room r LEFT JOIN r.reservations re " +
-            " WHERE (?1 <= re.dateTo AND ?2 >= re.dateFrom)" +
+            " WHERE (:dateFrom <= re.dateTo AND :dateTo >= re.dateFrom)" +
             " ) = 0" +
             " ))"
     )
-    List<Room> getOtherAvailableRooms(
-            Date dateFrom, Date dateTo
-
-    );
+    List<Room> getOtherAvailableRooms(@Param("dateFrom") Date dateFrom,@Param("dateTo") Date dateTo);
 
 
 

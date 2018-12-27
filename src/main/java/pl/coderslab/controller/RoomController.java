@@ -145,10 +145,13 @@ public class RoomController {
                 List<Room> otherRooms = roomRepository.getOtherAvailableRooms(startDate, endDate);
                 if (rooms.isEmpty() && !otherRooms.isEmpty()) {
 
-                    rooms = roomRepository.getOtherAvailableRooms(startDate, endDate);
+                    rooms = otherRooms;
                     List<Offer> offers = offerService.getOffers(rooms, days);
                     model.addAttribute("offers", offers);
-                    model.addAttribute("DatesInfo", "Rooms with other parameters available from " + Start + " to " + End);
+                    model.addAttribute("NoRoom", "Rooms with given parameters are no available in selected dates");
+                    model.addAttribute("DatesInfo", "Other types of rooms available from " + Start + " to " + End);
+
+
 
 
                 } else if (otherRooms.isEmpty()) {
@@ -211,5 +214,27 @@ public class RoomController {
         return "reservation/makeReservation";
     }
 
+
+    @RequestMapping(value = "/changePrice", method = RequestMethod.GET)
+    public String changePriceGET(@RequestParam Long id, Model model) {
+        Room room = roomRepository.findOne(id);
+        model.addAttribute(room);
+        return "room/changePrice";
+
+
+    }
+
+    @RequestMapping(value = "/changePrice", method = RequestMethod.POST)
+    public String changePricePOST(@Valid Room room, BindingResult result) {
+        if (result.hasErrors()) {
+            System.out.println("eerr");
+            return "room/changePrice";
+
+        }
+        roomRepository.save(room);
+        return "redirect:manage";
+
+
+    }
 
 }

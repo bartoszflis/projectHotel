@@ -18,7 +18,6 @@ public class Filtr extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println( httpServletRequest.getContextPath());
         if (isAllowedOnlyForLoggedIn(httpServletRequest.getRequestURI(), httpServletRequest.getContextPath())
                 && httpServletRequest.getSession().getAttribute("userSession") == null) { // test if user not logged in
 
