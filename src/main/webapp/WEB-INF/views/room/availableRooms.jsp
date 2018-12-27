@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: bartosz
@@ -56,12 +57,11 @@
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Room numer</th>
+            <th scope="col">Room number</th>
             <th scope="col">Room occupants</th>
             <th scope="col">Room type</th>
             <th scope="col">Room price</th>
             <th scope="col">Your offer</th>
-
             <th scope="col">Reserve</th>
 
         </tr>
@@ -78,10 +78,15 @@
 
 
                 <td>
-                    <a href="../reservation/makeReservation?roomId=${offer.room.id}" class="btn-secondary btn-sm" role="button">Reserve this room</a>
+                    <form method="post" action="../reservation/selectedRoom">
+                        <input type="hidden" name="roomId" value="${offer.room.id}"/>
+                        <input type="hidden" name="totalPrice" value="${offer.price}"/>
+                        <button type="submit" class="btn-secondary btn-sm" value="Submit">Reserve this room</button>
+
+                    </form>
+
+
                 </td>
-
-
 
 
             </tr>
@@ -90,6 +95,7 @@
     </table>
 
 
+</div>
 
 
 </body>

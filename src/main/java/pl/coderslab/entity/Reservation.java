@@ -34,7 +34,9 @@ public class Reservation {
     @Temporal(TemporalType.DATE)
     private Date dateTo;
     private Date created = new Date();
+    private float totalPrice;
     private boolean cancelled;
+
 
 
     public Long getId() {
@@ -94,8 +96,11 @@ public class Reservation {
         this.cancelled = cancelled;
     }
 
+    public float getTotalPrice() {
+        return totalPrice;
+    }
 
-
-
-
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

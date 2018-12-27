@@ -11,6 +11,7 @@ import pl.coderslab.entity.Room;
 import pl.coderslab.repository.GuestRepository;
 import pl.coderslab.repository.ReservationRepository;
 import pl.coderslab.repository.RoomRepository;
+import pl.coderslab.service.OfferService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -30,6 +31,20 @@ public class ReservationController {
     @Autowired
     ReservationRepository reservationRepository;
 
+    @Autowired
+    private OfferService offerService;
+
+
+
+    @PostMapping("/selectedRoom")
+    public String selectedRoom( @RequestParam(name = "roomId") long roomId, @RequestParam(name = "totalPrice") float totalPrice, HttpSession session) {
+        Reservation reservation = (Reservation)session.getAttribute("reservation");
+        reservation.setRoom(roomRepository.getOne(roomId));
+        reservation.setTotalPrice(totalPrice);
+        reservationRepository.save(reservation);
+        return "redirect:makeReservation";
+    }
+
 
     @GetMapping("/makeReservation")
     public String showRes(@RequestParam(required = false) Long id,  Model model) {
@@ -42,7 +57,7 @@ public class ReservationController {
 
 
     @PostMapping(value = "/makeReservation")
-    public String addUser(@Valid Guest guest, BindingResult result, @RequestParam long roomId, HttpSession session) {
+    public String addUser(@Valid Guest guest, BindingResult result, HttpSession session) {
         if (result.hasErrors()) {
             return "reservation/makeReservation";
         }
@@ -51,7 +66,6 @@ public class ReservationController {
         Reservation reservation = (Reservation)session.getAttribute("reservation");
         reservation.setGuest(guest);
 
-        reservation.setRoom(roomRepository.getOne(roomId));
         reservationRepository.save(reservation);
         return "redirect:manage";
     }

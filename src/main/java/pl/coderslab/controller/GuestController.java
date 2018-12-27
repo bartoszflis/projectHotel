@@ -121,16 +121,22 @@ public class GuestController {
     }
 
     @RequestMapping(value = "/sendInfo", method = RequestMethod.GET)
-    public String sendInfo (@RequestParam Long id) {
+    public String sendInfo (@RequestParam Long id, Model model) {
         if (id != null) {
         Guest guest  = guestRepository.findOne(id);
         Reservation reservation = reservationRepository.findFirstByGuestOrderByDateFrom(guest);
         String text = "Twoja najblizsza rezerwacja zaczyna sie: " +  reservation.getDateFrom().toString();
         String phoneNumber = guest.getPhoneNumber();
-        smsService.Send(phoneNumber, text);
+       boolean success = smsService.Send(phoneNumber, text);
+       model.addAttribute("idSent", guest.getId());
+            if (success) {
+                model.addAttribute("operation", "Operacja zakończona powodzeniem");
 
+            } else {
+                model.addAttribute("operation", "Błąd operacji");
+            }
         }
-        return "redirect:manage";
+        return "guest/manage_guests";
 
     }
 

@@ -17,8 +17,8 @@ import pl.smsapi.exception.SmsapiException;
 public class SMSService {
 
 
-    public String Send(String phoneNumber, String text) {
-
+    public boolean Send(String phoneNumber, String text) {
+        boolean success = false;
         try {
             BasicAuthClient client = new BasicAuthClient("adam910702@gmail.com", "6c5343230532bf5e4b72ca2a790d3acd");
 
@@ -32,6 +32,7 @@ public class SMSService {
             for (MessageResponse status : result.getList() ) {
                 System.out.println(status.getNumber() + " " + status.getStatus());
             }
+            success = true;
         } catch (ClientException e) {
             /**
              * 101 Niepoprawne lub brak danych autoryzacji.
@@ -47,7 +48,7 @@ public class SMSService {
             e.printStackTrace();
         }
 
-        return "Success";
+        return success;
     }
 
 

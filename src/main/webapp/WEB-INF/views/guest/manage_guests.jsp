@@ -1,3 +1,5 @@
+<%@ page import="org.springframework.ui.Model" %>
+<%@ page import="pl.coderslab.entity.Guest" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -56,6 +58,7 @@
             <th scope="col">Email</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
+            <th scope="col">Phone number</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -66,10 +69,16 @@
                 <td>${guest.email}</td>
                 <td>${guest.firstName}</td>
                 <td>${guest.lastName}</td>
+                <td>${guest.phoneNumber}</td>
 
 
                     <td><a href="edit?id=${guest.id}" class="btn-secondary btn-sm" role="button">Edit guest</a>
-                    <a href="sendInfo?id=${guest.id}" class="btn-secondary btn-sm" role="button">Send SMS Info</a></td>
+                    <a href="sendInfo?id=${guest.id}" class="btn-secondary btn-sm" role="button">Send SMS Info</a>
+                   <c:if test="${guest.id == idSent}">
+                       ${operation}
+                   </c:if>
+
+                    </td>
 
             </tr>
         </c:forEach>
