@@ -17,6 +17,13 @@ import pl.coderslab.repository.GuestRepository;
 import pl.coderslab.repository.ReservationRepository;
 import pl.coderslab.repository.RoomRepository;
 import pl.coderslab.repository.UserRepository;
+import pl.smsapi.BasicAuthClient;
+import pl.smsapi.api.SmsFactory;
+import pl.smsapi.api.action.sms.SMSSend;
+import pl.smsapi.api.response.MessageResponse;
+import pl.smsapi.api.response.StatusResponse;
+import pl.smsapi.exception.ClientException;
+import pl.smsapi.exception.SmsapiException;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -86,6 +93,8 @@ return "redirect:/";
 
     @RequestMapping(path = "/logout")
     public String logout(HttpSession session) {
+
+
         session.removeAttribute("userSession");
         return "redirect:/";
     }

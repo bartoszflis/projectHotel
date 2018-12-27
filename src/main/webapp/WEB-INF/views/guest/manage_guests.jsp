@@ -68,8 +68,8 @@
                 <td>${guest.lastName}</td>
 
 
-                <td><a href="edit?id=${guest.id}" class="btn-secondary btn-sm" role="button">Edit guest</a>
-                    <a href="confirmDelete?id=${guest.id}" class="btn-secondary btn-sm" role="button">Delete guest</a></td>
+                    <td><a href="edit?id=${guest.id}" class="btn-secondary btn-sm" role="button">Edit guest</a>
+                    <a href="sendInfo?id=${guest.id}" class="btn-secondary btn-sm" role="button">Send SMS Info</a></td>
 
             </tr>
         </c:forEach>

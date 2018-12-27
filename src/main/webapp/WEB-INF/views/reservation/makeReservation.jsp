@@ -56,6 +56,9 @@
             <div class="col-sm-4">
         <label for="3"> Email :</label> <form:input path="email" class="form-control col-lg-5" id="3"/><br/>
             </div>
+        <div class="col-sm-4">
+            <label for="1"> Numer telefonu:</label> <form:input path="phoneNumber" id="4" class="form-control col-lg-5"/><br/>
+        </div>
 
         <div class="col-sm-4">
         <input type="submit" value="Submit" class="btn btn-success"></input type><br><br>

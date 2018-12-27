@@ -11,8 +11,11 @@ import pl.coderslab.entity.Reservation;
 import pl.coderslab.repository.GuestRepository;
 import pl.coderslab.repository.ReservationRepository;
 import pl.coderslab.repository.RoomRepository;
+import pl.coderslab.service.SMSService;
 
 import javax.validation.Valid;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,6 +30,9 @@ public class GuestController {
 
     @Autowired
     ReservationRepository reservationRepository;
+
+    @Autowired
+    SMSService smsService;
 
 
 
@@ -112,6 +118,20 @@ public class GuestController {
         }
         guestRepository.save(guest);
         return "redirect:manage";
+    }
+
+    @RequestMapping(value = "/sendInfo", method = RequestMethod.GET)
+    public String sendInfo (@RequestParam Long id) {
+        if (id != null) {
+        Guest guest  = guestRepository.findOne(id);
+        Reservation reservation = reservationRepository.findFirstByGuestOrderByDateFrom(guest);
+        String text = "Twoja najblizsza rezerwacja zaczyna sie: " +  reservation.getDateFrom().toString();
+        String phoneNumber = guest.getPhoneNumber();
+        smsService.Send(phoneNumber, text);
+
+        }
+        return "redirect:manage";
+
     }
 
 

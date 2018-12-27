@@ -20,6 +20,9 @@ public class Guest {
     @Column(nullable = false, length = 50)
     private String email;
     @NotBlank
+    @Size(min = 9, max = 14)
+    private String phoneNumber;
+    @NotBlank
     @Size(min = 3, message = "Minimum 3 znaki")
     private String firstName;
     @NotBlank
@@ -68,5 +71,13 @@ public class Guest {
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
