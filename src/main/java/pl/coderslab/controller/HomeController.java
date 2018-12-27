@@ -46,10 +46,6 @@ public class HomeController {
     @GetMapping("")
     public String index(Model model, HttpSession session) {
         User user = (User) session.getAttribute("userSession");
-       // List<Reservation> reservationFrom = reservationRepository.findByDatesFrom(actualDate);
-      //  List<Reservation> reservationTo = reservationRepository.findByDatesTo(actualDate);
-      //  model.addAttribute("dateFrom", reservationFrom);
-     //   model.addAttribute("dateTo", reservationTo);
 
         if (userRepository.findAll().size()<1) {
 

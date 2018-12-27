@@ -25,13 +25,10 @@ public class Reservation {
 
     private Room room;
 
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     @Temporal(TemporalType.DATE)
     private Date dateFrom;
-
-    @NotNull
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)

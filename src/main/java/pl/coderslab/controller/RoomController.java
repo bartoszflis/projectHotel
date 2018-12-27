@@ -25,6 +25,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 @Controller
 @RequestMapping("/room")
@@ -124,6 +125,7 @@ public class RoomController {
 
         try {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date startDate = formatter.parse(Start);
             Date endDate = formatter.parse(End);
 
@@ -184,7 +186,7 @@ public class RoomController {
 
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(HttpSession session, Model model) {
+    public String search(HttpSession session) {
         session.setAttribute("reservation", new Reservation());
 
 
