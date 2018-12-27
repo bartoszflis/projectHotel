@@ -77,7 +77,7 @@
 
                     <a href="changePrice?id=${rooms.id}" class="btn-secondary btn-sm" role="button">Change room's price</a>
                     <a href="confirmDelete?id=${rooms.id}&number=${rooms.number}" class="btn-secondary btn-sm"
-                       role="button">Usuń pokój</a>
+                       role="button">Delete room</a>
                 </td>
             </tr>
         </c:forEach>

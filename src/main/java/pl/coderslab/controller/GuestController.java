@@ -125,7 +125,7 @@ public class GuestController {
         if (id != null) {
         Guest guest  = guestRepository.findOne(id);
         Reservation reservation = reservationRepository.findFirstByGuestOrderByDateFrom(guest);
-        String text = "Twoja najblizsza rezerwacja zaczyna sie: " +  reservation.getDateFrom().toString();
+        String text = "Your reservation starts on: " +  reservation.getDateFrom().toString() + " please prepare " + reservation.getTotalPrice() + "PLN";
         String phoneNumber = guest.getPhoneNumber();
        boolean success = smsService.Send(phoneNumber, text);
        model.addAttribute("idSent", guest.getId());
