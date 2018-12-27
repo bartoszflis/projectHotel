@@ -18,9 +18,10 @@ public class Filtr extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-
+        System.out.println( httpServletRequest.getContextPath());
         if (isAllowedOnlyForLoggedIn(httpServletRequest.getRequestURI(), httpServletRequest.getContextPath())
                 && httpServletRequest.getSession().getAttribute("userSession") == null) { // test if user not logged in
+
 
 
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/");
@@ -31,10 +32,10 @@ public class Filtr extends OncePerRequestFilter {
     }
 
     private boolean isAllowedOnlyForLoggedIn(String url, String contextPath) {
-        Set<String> allowedWithoutBeingLoggedIn = new HashSet<>(Arrays.asList(
-                contextPath + "/", contextPath + "/user/registerFirst"));
+        boolean contains = url.matches("^" + contextPath + "\\/user\\/registerFirst.*$");
+        boolean contains2 = url.matches("^" + contextPath + "\\/(;jsessionid=.+)?$");
 
-        return !allowedWithoutBeingLoggedIn.contains(url);
+        return !(contains || contains2);
     }
 
 

@@ -52,8 +52,8 @@ public class HomeController {
             return "redirect:user/registerFirst";
 
         }
-        if (user != null) {
 
+        if (user != null) {
 
        return  "home";}
         else {
@@ -69,6 +69,7 @@ public class HomeController {
     @PostMapping("")
     public String login(@ModelAttribute("user") User user, Model model, HttpSession session) {
         User existingUser = userRepository.findFirstByEmail(user.getEmail());
+        System.out.println("bla");
         if (existingUser != null && existingUser.getEmail().equals(user.getEmail())
                 && existingUser.getPassword().equals(user.getPassword())) {
             session.setAttribute("userSession", existingUser);
