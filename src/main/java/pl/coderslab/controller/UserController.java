@@ -55,15 +55,15 @@ public class UserController {
 
     @PostMapping("/register")
     public String showRegister(@Valid User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "user/register";
-        }
         User existingUser = userRepository.findFirstByEmail(user.getEmail());
         if (existingUser != null) {
             FieldError error = new FieldError("user", "email", "Taki email już istnieje w bazie danych");
             result.addError(error);
+        }
+        if (result.hasErrors()) {
             return "user/register";
         }
+
         userRepository.save(user);
         return "user/manage_users";
     }
