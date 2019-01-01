@@ -63,6 +63,7 @@ public class UserController {
         if (result.hasErrors()) {
             return "user/register";
         }
+        System.out.println(user.getPassword());
 
         userRepository.save(user);
         return "user/manage_users";

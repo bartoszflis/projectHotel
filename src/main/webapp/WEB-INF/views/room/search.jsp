@@ -50,14 +50,14 @@
         <div class="col-sm-4">
             <label for="1"> Start date: </label>
 
-            <input type="date" name="Start" class="form-control col-lg-5" id="1" min="2018-01-02" value="2018-06-01" required> <br>
+            <input type="date" name="Start" class="form-control col-lg-5" id="1" min="2018-01-02" value="2018-12-01" required> <br>
         </div>
 
         <div class="col-sm-4">
             <label for="2"> End date:</label>
 
 
-            <input type="date" name="End" class="form-control col-lg-5" id="2" min="2018-01-02" value="2018-06-01"  required><br>
+            <input type="date" name="End" class="form-control col-lg-5" id="2" min="2018-01-02" value="2018-12-01"  required><br>
         </div>
         <div class="col-sm-4">
 
