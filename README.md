@@ -1,5 +1,5 @@
 # projectHotel
-Application for making/managing hotel reservations
+Application for making and managing hotel reservations
 
 ## Getting started
 1. Import project to your IDE.
